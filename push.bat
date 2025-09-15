@@ -15,7 +15,7 @@ set msg=Auto commit on %datetime%
 git commit -m "%msg%"
 
 REM Push to GitHub
-git push origin main
+git push origin master
 
 echo ============================
 echo ✅ Code pushed successfully!
