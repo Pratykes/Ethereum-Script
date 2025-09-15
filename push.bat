@@ -1,24 +1,30 @@
 @echo off
-REM ============================
-REM Push Ethereum Project to GitHub
-REM ============================
+REM ===============================
+REM Git Auto Push Script
+REM ===============================
 
-REM Go to your project folder (edit this path if needed)
-cd C:\Users\Pratyush\Downloads\Projects\Ethereum-Script
+:: Change to your repo folder (update path if needed)
+cd /d "C:\Users\Pratyush\Downloads\Projects\Ethereum-Script"
 
-REM Stage all changes
+:: Set Git identity (only first time, remove if already set globally)
+git config --global user.name "Pratyush Kesarwani"
+git config --global user.email "kesarwanipratyush9@gmail.com"
+
+:: Stage all changes
 git add .
 
-REM Commit with timestamp message
-for /f "tokens=2 delims==" %%I in ('wmic os get localdatetime /value') do set datetime=%%I
-set msg=Auto commit on %datetime%
-git commit -m "%msg%"
+:: Create commit with current date & time
+set dt=%date% %time%
+git commit -m "Auto commit on %dt%"
 
-REM Push to GitHub
-git push origin master
+:: Pull latest changes to avoid conflicts
+git pull origin main --no-edit
 
-echo ============================
+:: Push to GitHub
+git push origin main
+
+echo.
+echo ==============================
 echo ✅ Code pushed successfully!
-echo ============================
-
+echo ==============================
 pause
